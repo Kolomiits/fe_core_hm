@@ -10,6 +10,13 @@ html {
 body {
   font-family: 'Playfair Display', serif;
   background-color: #fdfafa;
+  counter-reset: V;
+}
+
+.clearfix::after {
+  display: table;
+  content: "";
+  clear: both;
 }
 
 .wrapper {
@@ -20,7 +27,7 @@ body {
 .main-header {
   width: 970px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 18px;
 }
 
 .main-navigation {
@@ -28,12 +35,15 @@ body {
   padding: 0;
   font-size: 16px;
   list-style-type: none;
-  text-align: center;
+}
+
+.main-navigation::before {
+  counter-increment: V;
 }
 
 .main-navigation li {
-  display: inline-block;
-  vertical-align: top;
+  float: left;
+  padding: 30px;
 }
 
 .main-navigation a {
@@ -41,15 +51,21 @@ body {
   text-decoration: none;
   text-transform: uppercase;
   line-height: 24px;
-  padding: 20px;
+  padding: 10px;
 }
 
 .main-navigation li:not(:last-child) {
-  margin-right: 60px;
+  margin-right: 20px;
 }
 
 .main-navigation a:hover,
-.main-navigation a:focus {
+.main-navigation a:focus,
+.social-links a:hover,
+.social-links a:focus,
+.main-info-item a:hover,
+.main-info-item a:focus,
+.main-item-page a:hover,
+.main-item-page a:focus {
   color: #9747ff;
 }
 
@@ -60,14 +76,12 @@ body {
 }
 
 .content-item-list {
-  display: inline-block;
-  vertical-align: middle;
-  width: 420px;
+  float: left;
+  max-width: 419px;
 }
 
 .content-item-list:nth-child(n) {
-  padding: 31px;
-  ;
+  padding: 30px;
 }
 
 .content-item-list img {
@@ -77,57 +91,136 @@ body {
 }
 
 .content-item-list h2 {
-  color: #706d6d;
+  color: #0E1116;
+  background: linear-gradient(0deg, #88292F 25%, #5DB7DE 65%, #0D5D56 75%);
   line-height: 24px;
-  font-size: 12px;
+  font-size: 16px;
   text-transform: uppercase;
 }
 
 .content-item-list h3 {
-  color: #706d6d;
+  color: #0E1116;
+  background: linear-gradient(180deg, #88292F, #5DB7DE, #0D5D56);
   line-height: 23px;
-  font-size: 30px;
+  font-size: 16px;
   text-align: left;
+  padding: 5px
 }
 
 .content-item-list p {
+  background: linear-gradient(270deg, #88292F 20%, #5DB7DE 40%, #0D5D56 60%);
   text-align: left;
-  color: #706d6d;
-  font-size: 15px;
+  color: #0E1116;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.main-item-p {
+  padding: 2px;
+  width: 970px;
+  text-align: center;
+}
+
+.main-item-page li {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.main-item-page li:not(:last-child) {
+  margin-right: 17px;
+}
+
+.main-item-page {
+  text-decoration: none;
+  color: black;
+  margin-bottom: 25px;
+}
+
+.main-item-page li {
+  list-style-type: none;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.main-item-page li::before {
+  content: "\2192";
 }
 
 .main-footer {
   margin: 0 auto;
-  padding: 50px;
+  padding: 30px;
 }
 
-.social-links {
-  margin: 0 auto;
-  padding: 0px;
-  font-size: 12px;
-  list-style-type: none;
-  text-align: center;
+.social {
+  display: inline-block;
+  vertical-align: top;
+  width: 400px;
+  height: 400px;
+  margin-right: 100px;
+  text-align: right;
+  background: linear-gradient(270deg, #88292F 25%, #5DB7DE 40%, #0D5D56 60%);
 }
 
 .social-links li {
-  display: inline-block;
-  vertical-align: baseline;
+  width: 250px;
+  padding: 10px;
+  margin-bottom: 15px;
+  list-style-type: none;
+  font-size: 16px;
 }
 
 .social-links a {
-  color: #555252;
+  color: #0E1116;
   text-decoration: none;
   text-transform: uppercase;
   line-height: 24px;
-  padding: 20px;
+  padding: 30px;
+  margin-bottom: 10px;
 }
 
-.social-links li:not(:last-child) {
-  margin-right: 30px;
+.info {
+  display: inline-block;
+  vertical-align: top;
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(90deg, #88292F 25%, #5DB7DE 43%, #0D5D56 65%);
 }
 
-.social-links a:hover,
-.social-links a:focus {
+.main-info-item {
+  width: 300px;
+  height: auto;
+  padding: 5px;
+  margin: 0 auto;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #0E1116;
+}
+
+.main-info-item li {
+  padding: 10px;
+  margin-bottom: 35px;
+}
+
+.main-info-item a {
+  text-decoration: none;
+  color: #0E1116;
+  padding: 30px;
+}
+
+.info li {
+  counter-increment: V;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.info li::before {
+  content: counter(V, lower-roman);
+  color: rgb(7, 4, 38);
+  margin-bottom: 25px;
+}
+
+.main-info-item:hover li::before {
   color: #9747ff;
 }
 
@@ -136,8 +229,9 @@ body {
   width: 120px;
   height: 50px;
   margin: 0 auto;
+  padding: 10px;
   font-family: sans-serif;
-  font-size: 19px;
+  font-size: 16px;
   background: #ffff;
   color: #3a3b3b;
   border-radius: 1px;
@@ -145,5 +239,5 @@ body {
 }
 
 .foot-button:hover {
-  transform: scale(1.11);
+  transform: scale(1.01);
 }
